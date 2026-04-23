@@ -47,6 +47,11 @@ app.use(cors({
 }));
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
+// Root route to check if server is alive
+app.get('/', (req, res) => {
+    res.send('Athar Backend is running on Vercel! 🚀');
+});
+
 // Rate Limiting for Security
 const authLimiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
@@ -540,5 +545,9 @@ setInterval(() => {
 }, 24 * 60 * 60 * 1000); // Check every 24 hours
 
 const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, "0.0.0.0", () => console.log(`Server running on http://localhost:${PORT}`));
-server.timeout = 0; // Support very large file uploads (5GB) without timing out
+
+if (process.env.NODE_ENV !== 'production') {
+    app.listen(PORT, () => console.log(`Server running on http://localhost:${PORT}`));
+}
+
+module.exports = app;
