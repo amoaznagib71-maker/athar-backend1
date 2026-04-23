@@ -1,0 +1,54 @@
+[
+  {
+    "id": "manual_1776957539066",
+    "method": "vodafone_cash",
+    "transactionId": "01028746064",
+    "amount": 1200,
+    "email": "amoazahmed71@gmail.com",
+    "customerName": "amoazahmed71@gmail.com ",
+    "phone": "",
+    "packageName": "Dominance (الهيمنة)",
+    "status": "paid",
+    "timestamp": "2026-04-23T15:18:59.068Z",
+    "approvedAt": "2026-04-23T15:19:13.975Z"
+  },
+  {
+    "id": "manual_1776956966924",
+    "method": "vodafone_cash",
+    "transactionId": "01028746064",
+    "amount": 1200,
+    "email": "hubmarket985@gmail.com",
+    "customerName": "hubmarket985@gmail.com ",
+    "phone": "",
+    "packageName": "Dominance (الهيمنة)",
+    "status": "paid",
+    "timestamp": "2026-04-23T15:09:26.925Z",
+    "approvedAt": "2026-04-23T15:09:51.993Z"
+  },
+  {
+    "id": "manual_1776956423061",
+    "method": "vodafone_cash",
+    "transactionId": "01028746064",
+    "amount": 600,
+    "email": "amoaznagib@gmail.com",
+    "customerName": "amoaznagib@gmail.com ",
+    "phone": "",
+    "packageName": "Starter (البداية)",
+    "status": "paid",
+    "timestamp": "2026-04-23T15:00:23.063Z",
+    "approvedAt": "2026-04-23T15:01:27.120Z"
+  },
+  {
+    "id": "manual_1776955966995",
+    "method": "instapay",
+    "transactionId": "5484460754112563",
+    "amount": 850,
+    "email": "amoaznagib71@gmail.com",
+    "customerName": "MOAZ Ahmed ",
+    "phone": "",
+    "packageName": "Growth (النمو)",
+    "status": "paid",
+    "timestamp": "2026-04-23T14:52:46.997Z",
+    "approvedAt": "2026-04-23T14:58:27.400Z"
+  }
+]
