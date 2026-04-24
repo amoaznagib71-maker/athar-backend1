@@ -13,10 +13,12 @@ const rateLimit = require('express-rate-limit');
 const emailService = require('./services/emailService');
 const fs = require('fs');
 
-// Ensure uploads directory exists
-const UPLOADS_DIR = path.join(__dirname, 'uploads', 'results');
-if (!fs.existsSync(UPLOADS_DIR)) {
-    fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+// Ensure uploads directory exists (Only if NOT on Vercel)
+if (!process.env.VERCEL) {
+    const UPLOADS_DIR = path.join(__dirname, 'uploads', 'results');
+    if (!fs.existsSync(UPLOADS_DIR)) {
+        fs.mkdirSync(UPLOADS_DIR, { recursive: true });
+    }
 }
 
 // Initialize JSON files if they don't exist (Only if NOT on Vercel)
@@ -135,31 +137,9 @@ app.post('/api/payments/manual', async (req, res) => {
     }
 });
 
-// Payment Verification Endpoint
+// --- Stripe Verification (Disabled since you moved to Manual Payments) ---
 app.get('/api/stripe/verify-session', async (req, res) => {
-    try {
-        const { sessionId } = req.query;
-        if (!sessionId) return res.status(400).json({ error: "Session ID required" });
-
-        // If in Mock Mode, allow specific test session
-        if (process.env.MOCK_PAYMENT === 'true' && sessionId === 'mock_success') {
-            return res.json({ verified: true, amount: 600 });
-        }
-
-        const session = await stripe.checkout.sessions.retrieve(sessionId);
-        
-        if (session.payment_status === 'paid') {
-            res.json({ 
-                verified: true, 
-                amount: session.amount_total / 100,
-                customer: session.customer_details?.email
-            });
-        } else {
-            res.json({ verified: false, message: "Payment not completed" });
-        }
-    } catch (error) {
-        res.status(500).json({ verified: false, error: error.message });
-    }
+    res.json({ verified: false, message: "Stripe is disabled. Use manual payment." });
 });
 
 // --- Auth & OTP Management ---
