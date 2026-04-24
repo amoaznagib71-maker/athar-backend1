@@ -19,12 +19,14 @@ if (!fs.existsSync(UPLOADS_DIR)) {
     fs.mkdirSync(UPLOADS_DIR, { recursive: true });
 }
 
-// Initialize JSON files if they don't exist
-const FILES_TO_INIT = ['orders.json', 'subscriptions.json', 'users.json'];
-FILES_TO_INIT.forEach(f => {
-    const p = path.join(__dirname, f);
-    if (!fs.existsSync(p)) fs.writeFileSync(p, '[]');
-});
+// Initialize JSON files if they don't exist (Only if NOT on Vercel)
+if (!process.env.VERCEL) {
+    const FILES_TO_INIT = ['orders.json', 'subscriptions.json', 'users.json'];
+    FILES_TO_INIT.forEach(f => {
+        const p = path.join(__dirname, f);
+        if (!fs.existsSync(p)) fs.writeFileSync(p, '[]');
+    });
+}
 
 // Multer Configuration
 const storage = multer.diskStorage({
